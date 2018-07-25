@@ -43,6 +43,10 @@ $(function() {
 				
 				const nextDays = forecast.slice(1);
 				displayNexDays(nextDays);
+
+				initialize(result.lat, result.lon);
+				console.log(result.lon);
+				console.log(result.lat);
 			},
 			error: function (error){
 				console.log(error.responseText);
@@ -92,4 +96,18 @@ $(function() {
 			card.appendTo('#next-days');
 		}
 	}
+	
+	function initialize(lat, lon) {
+		var map;
+		var latlng = new google.maps.LatLng(lat, lon);
+	 
+		var options = {
+			zoom: 14,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+	 
+		map = new google.maps.Map(document.getElementById("mapa"), options);
+	}
+	
 });
